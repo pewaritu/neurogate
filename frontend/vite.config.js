@@ -1,7 +1,23 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+// vite.config.js
 
-// https://vitejs.dev/config/
+import { defineConfig } from 'vite';
+
 export default defineConfig({
-  plugins: [react()],
-})
+  // CRITICAL FIX: This tells Vite that your main entry file (index.html) 
+  // and source code are located inside the 'src' subdirectory.
+  root: 'src', 
+
+  // FIX: This resolves the 'localhost refused to connect' error 
+  server: {
+    host: true, 
+  },
+  
+  // Base path for the application, usually '/'
+  base: '/',
+  
+  // Build configuration (for production deployment)
+  build: {
+    // Output directory for production build
+    outDir: 'dist',
+  }
+});
